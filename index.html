@@ -1,14 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Galería</title>
-  <link rel="stylesheet" href="index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para Nani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Lora:ital,wght@0,400;0,600;1,400&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="pixel.css">
+<link rel="stylesheet" href="oso.css">
 </head>
 <body>
-  <h1>Galería</h1>
-  <main id="galeria"></main>
-  <script src="index.js"></script>
+<div class="audio" role="group" aria-label="Música">
+  <button id="btnPlay" aria-pressed="false" aria-label="Activar música">♪</button>
+  <button id="btnMute" aria-pressed="false" aria-label="Silenciar">🔇</button>
+</div>
+
+<div id="noche" aria-hidden="true"></div>
+<main>
+<section id="inicio" data-scene="inicio" class="s-inicio">
+  <h1 class="mural" data-t="inicioTitulo"></h1>
+  <p data-t="inicioFrase"></p>
+  <button id="btnStart" class="btn" data-t="inicioBoton"></button>
+</section>
+
+<section id="amistad" data-scene="amistad" class="s-amistad">
+  <img class="retrato mural-img" src="img/retrato-mural.png" alt="Retrato de Nani en estilo mural" loading="lazy">
+  <div class="texto"><h2 class="mural" data-t="amistadTitulo"></h2><p data-t="amistadTexto"></p></div>
+</section>
+
+<section id="duda" data-scene="duda" class="s-duda">
+  <div class="pixel-grid" aria-hidden="true"></div>
+  <div class="suelo" aria-hidden="true"></div>
+<div class="peek" aria-hidden="true"><div class="sprite"></div></div>
+  <div class="texto"><h2 class="pix" data-t="dudaTitulo"></h2><p data-t="dudaTexto"></p></div>
+</section>
+
+<section id="enamoramiento" data-scene="enamoramiento" class="s-pop">
+  <img class="retrato pop-img" src="img/retrato-popart.png" alt="Retrato pop art de Nani" loading="lazy">
+  <div class="texto"><h2 class="mural" data-t="popTitulo"></h2><p data-t="popTexto"></p></div>
+</section>
+
+<section id="nostalgia" data-scene="nostalgia" class="s-nostalgia">
+  <figure><img src="img/jardin.png" alt="Ilustración del jardín" loading="lazy"></figure>
+  <div class="texto"><h2 class="mural" data-t="nostalgiaTitulo"></h2><p data-t="nostalgiaTexto"></p></div>
+</section>
+
+<section id="cumple" data-scene="cumple" class="s-cumple">
+  <div class="texto"><h2 class="mural" data-t="cumpleTitulo"></h2><p data-t="cumpleTexto"></p></div>
+</section>
+
+<section id="cielo" data-scene="cielo" class="s-cielo">
+  <ul class="acrostico" aria-label="Mujer"></ul>
+  <button id="oso" class="oso" aria-pressed="false" aria-label="Oso rojo con una rosa en la pancita: toca para girarlo y ver el anillo">
+    <span class="oso-in" id="osoIn">
+      <span class="cara frente">
+        <i class="oreja i"></i><i class="oreja d"></i>
+        <i class="cuerpo"></i><i class="pie i"><b>♥</b></i><i class="pie d"><b>♥</b></i>
+        <i class="cabeza"><i class="ojo i"></i><i class="ojo d"></i><i class="hocico"><i class="nariz"></i><i class="sonrisa"></i></i></i>
+        <i class="brazo i"></i><i class="brazo d"></i>
+        <i class="llave"></i>
+        <i class="domo"><i class="velo">
+          <i class="rosa"><i class="tallo"></i><i class="hoja"></i><i class="flor"></i></i>
+          <i class="anillo"><i class="banda"></i><i class="gema"></i></i>
+        </i></i>
+      </span>
+      <span class="cara dorso">
+        <i class="oreja i"></i><i class="oreja d"></i><i class="cuerpo"></i><i class="cola"></i>
+        <i class="pie i"></i><i class="pie d"></i><i class="cabeza"></i>
+        <i class="brazo i"></i><i class="brazo d"></i>
+      </span>
+    </span>
+  </button>
+  <p class="pista" id="pista" data-t="osoPista"></p>
+  <p class="ultima" id="ultima" data-t="ultimaFrase"></p>
+</section>
+</main>
+
+<script src="index.js"></script>
 </body>
 </html>
