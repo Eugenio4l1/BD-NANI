@@ -89,7 +89,7 @@ section{position:relative;min-height:100svh;display:grid;place-items:center;padd
 /* Domo de cristal */
 .domo{width:46%;aspect-ratio:1;left:27%;top:55%;border-radius:50%!important;z-index:5;background:radial-gradient(circle at 30% 25%,#ffffff55,transparent 40%),#5a0a1088!important;box-shadow:0 0 0 5px #8f0a12,inset 0 0 12px #0008}
 .domo .velo{position:absolute;inset:8%;width:auto;height:auto;border-radius:50%;background:radial-gradient(circle at 40% 30%,#f4ece0,#d9cfc0)!important;overflow:hidden}
-.domo .velo>i{background:none!important;inset:0;width:100%;height:100%;transition:opacity .5s .55s,transform .5s .55s}
+.domo .velo>i{background:none!important;inset:0;width:100%;height:100%;transition:opacity .2s .6s,transform .2s .6s}
 .anillo{opacity:0;transform:scale(.7)}
 [aria-pressed=true] .rosa{opacity:0;transform:scale(.7)}
 [aria-pressed=true] .anillo{opacity:1;transform:none}
@@ -116,10 +116,28 @@ section{position:relative;min-height:100svh;display:grid;place-items:center;padd
 #noche{position:fixed;inset:0;opacity:0;transition:opacity 3s;pointer-events:none;background:url("img/cielo.jpg") var(--cielo-pos)/var(--cielo-zoom) no-repeat,var(--noche)}
 body.noche #noche{opacity:1}
 
-/* Audio */
-.audio{position:fixed;top:.8rem;right:.8rem;z-index:20;display:flex;gap:.4rem}
-.audio button{width:2.75rem;height:2.75rem;border-radius:50%;border:2px solid #fff8;background:#000a;color:#fff;font-size:1.1rem;cursor:pointer}
-.audio button[aria-pressed=true]{background:var(--amar);color:var(--negro)}
+/* Reproductor sugerido (discreto) */
+.musica{position:fixed;left:.6rem;bottom:.6rem;z-index:20;width:min(26rem,calc(100% - 1.2rem));font-size:.85rem;line-height:1.3;color:#f4efe6;background:#04050fcc;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid #ffffff1f;border-radius:10px}
+.musica[hidden]{display:none}
+.m-barra{display:flex;align-items:center;gap:.5rem;padding:.5rem .6rem}
+.m-info{flex:1;min-width:0;display:grid}
+.m-info small{opacity:.6;letter-spacing:.08em;text-transform:uppercase;font-size:.65rem}
+.m-info b,.m-info span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:400}
+.m-info b{font-weight:600}.m-info span{opacity:.75}
+.m-btn{font:inherit;color:inherit;text-decoration:none;cursor:pointer;background:none;border:1px solid #ffffff44;border-radius:999px;padding:.35rem .8rem}
+.m-btn:hover{border-color:var(--amar);color:var(--amar)}
+.m-panel{padding:.6rem .8rem .2rem;max-height:45svh;overflow:auto;border-bottom:1px solid #ffffff1a}
+.m-sub{opacity:.6;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
+.m-panel ul{list-style:none;padding:0}
+.m-panel li button{all:unset;display:block;width:100%;cursor:pointer;padding:.35rem .2rem;border-radius:6px}
+.m-panel li button:hover{background:#ffffff14}
+.m-panel li button[aria-pressed=true]{color:var(--amar)}
+.m-panel li button:focus-visible{outline:2px solid var(--amar)}
+#mEmbed iframe{display:block;width:100%;height:80px;border:0;border-radius:10px 10px 0 0}
+#mEmbed:empty{display:none}
+.playlist{max-width:34ch;font-size:.95rem;opacity:.85}
+.playlist a{color:inherit;text-underline-offset:4px}
+.playlist a:hover{color:var(--amar)}
 
 @media (min-width:800px){
   .s-amistad,.s-pop,.s-nostalgia{grid-template-columns:1fr 1fr;align-items:center}
@@ -130,4 +148,23 @@ body.noche #noche{opacity:1}
   html{scroll-behavior:auto}
   .acrostico li,.ultima{opacity:1;transform:none}
   #noche{transition:none}
+}
+
+/* Pantallas separadas */
+.paginas main>section{display:none}
+.paginas main>section.activa{display:grid;animation:entra .9s both;padding-bottom:9rem}
+@keyframes entra{from{opacity:0}}
+section:focus{outline:none}
+.pasos{grid-column:1/-1;display:flex;gap:1rem;justify-content:center;margin-top:2rem;position:relative;z-index:3}
+.pasos button{font:inherit;color:#fff;background:#000b;border:2px solid #fff;border-radius:999px;padding:.7rem 1.6rem;cursor:pointer}
+.pasos .sig{background:var(--amar);color:var(--negro);border-color:var(--amar)}
+.pasos button:hover{filter:brightness(1.15)}
+
+/* Enamoramiento: orden de la cuadrícula y título dentro del recuadro */
+.s-pop .pasos{order:3}
+.s-pop .texto{max-width:38rem}
+.s-pop .mural{font-size:clamp(1.8rem,4.2vw,3rem);overflow-wrap:anywhere}
+@media (min-width:800px){
+  .s-pop .texto{grid-column:1;grid-row:1}
+  .s-pop .retrato{grid-column:2;grid-row:1}
 }

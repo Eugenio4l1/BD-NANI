@@ -8,13 +8,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Lora:ital,wght@0,400;0,600;1,400&family=Press+Start+2P&display=swap">
 <link rel="stylesheet" href="index.css">
 <link rel="stylesheet" href="pixel.css">
-<link rel="stylesheet" href="oso.css">
 </head>
 <body>
-<div class="audio" role="group" aria-label="Música">
-  <button id="btnPlay" aria-pressed="false" aria-label="Activar música">♪</button>
-  <button id="btnMute" aria-pressed="false" aria-label="Silenciar">🔇</button>
-</div>
+<aside id="musica" class="musica" aria-label="Música sugerida" hidden>
+  <div id="mPanel" class="m-panel" hidden>
+    <p class="m-sub">Canciones de esta etapa</p>
+    <ul id="mLista"></ul>
+  </div>
+  <div id="mEmbed" class="m-embed"></div>
+  <div class="m-barra">
+    <span class="m-info"><small id="mEtapa"></small><b id="mTitulo"></b><span id="mArtista"></span></span>
+    <a id="mEscuchar" class="m-btn" target="_blank" rel="noopener">Escuchar</a>
+    <button id="mToggle" class="m-btn" aria-expanded="false" aria-controls="mPanel">Lista</button>
+  </div>
+</aside>
 
 <div id="noche" aria-hidden="true"></div>
 <main>
@@ -32,7 +39,7 @@
 <section id="duda" data-scene="duda" class="s-duda">
   <div class="pixel-grid" aria-hidden="true"></div>
   <div class="suelo" aria-hidden="true"></div>
-<div class="peek" aria-hidden="true"><div class="sprite"></div></div>
+  <div class="peek" aria-hidden="true"><div class="sprite"></div></div>
   <div class="texto"><h2 class="pix" data-t="dudaTitulo"></h2><p data-t="dudaTexto"></p></div>
 </section>
 
@@ -74,6 +81,7 @@
   </button>
   <p class="pista" id="pista" data-t="osoPista"></p>
   <p class="ultima" id="ultima" data-t="ultimaFrase"></p>
+  <p class="playlist"><a href="https://open.spotify.com/playlist/4c50d4zpqIgIIOZxDVZhDu" target="_blank" rel="noopener" data-t="playlistTexto"></a></p>
 </section>
 </main>
 
