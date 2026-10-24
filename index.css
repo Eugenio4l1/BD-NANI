@@ -168,3 +168,9 @@ section:focus{outline:none}
   .s-pop .texto{grid-column:1;grid-row:1}
   .s-pop .retrato{grid-column:2;grid-row:1}
 }
+
+/* Texto largo legible: columna más ancha, párrafos separados */
+.texto{max-width:44rem}
+.s-pop .texto{max-width:44rem}
+.texto p{font-size:clamp(1rem,.35vw + .92rem,1.1rem);line-height:1.75;margin:0 0 1.15rem;color:#ece8df;max-width:none}
+.texto p:last-child{margin-bottom:0}

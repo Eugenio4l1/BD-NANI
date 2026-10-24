@@ -4,8 +4,8 @@ const CONTENT = {
   inicioTitulo: 'Para Nani',
   inicioFrase: 'Hay historias que merecen ser recordadas con cariño.',
   inicioBoton: 'Comenzar',
-  amistadTitulo: 'Amistad',   amistadTexto: 'EDITAR: texto personal de Amistad',
-  dudaTitulo: 'Duda',         dudaTexto: 'EDITAR: texto personal de Duda',
+  amistadTitulo: 'Amistad',   amistadTexto: 'La RAE define la amistad como un afecto personal y desinteresado hacia otra persona. Pero una definición no alcanza para explicar lo que significa una amistad de verdad.\n\nAmistad también es apoyarse, como cuando me diste una mano para dirigir el grupo, aunque no te dieran el crédito que merecías. Son las risas, las bromas y todos esos buenos recuerdos que compartimos durante años. Es que bastara con verte y saludarte para que mi día mejorara un poquito.\n\nPero, si soy sincero, para mí nunca fue solamente amistad.\n\nSiempre hubo algo en ti que llamaba mi atención: esos ojos hermosos que todavía recuerdo con anhelo, tu pelo ondulado y esa sonrisa tan sincera. Supe que empezabas a significar algo más cuando me ponía nervioso cerca de ti, cuando evitaba mencionarte para disimular lo que realmente sentía.\n\nY ese sentimiento se intensificó.\n\nSe intensificó cuando Erick nos dejó solos en un cuarto. Cuando teníamos conversaciones en las que parecíamos olvidarnos del resto y la conexión entre nosotros se sentía genuina. Cuando hacíamos equipo en los deportes. Y cuando Palacios nos puso a bailar y sentí el corazón acelerarse sin saber muy bien qué hacer con todo aquello que llevaba dentro.\n\nAun así, nunca me atreví a decirte nada. Me guardé lo que sentía y dejé que nuestra historia siguiera siendo una amistad. Una amistad con una mujer a la que admiraba, que me hacía bien y que, sin saberlo, ya empezaba a ocupar un lugar diferente en mi vida.',
+  dudaTitulo: 'Duda',         dudaTexto: 'Un año después, nuestros caminos volvieron a cruzarse. Esta vez, en los pasillos de una universidad. Y aunque había pasado el tiempo, seguíamos siendo capaces de encontrarnos entre conversaciones, risas y esos planes de salir algún día que siempre terminaban quedándose en palabras.\n\nLa verdad es que nada había cambiado demasiado entre nosotros. Creo que el que había cambiado era yo, o al menos estaba aprendiendo a serlo. Porque esta vez decidí dejar de tener miedo e intentarlo.\n\nAsí que un día hice realidad aquella idea de salir juntos y te invité a comer algo. Y, mientras llegaba el día, empezamos a hablarnos más. Nos compartíamos memes, nos contábamos cómo había estado nuestro día y, poco a poco, nuestras conversaciones fueron tomando más confianza, hasta llegar a tener una complicidad que no recordaba haber tenido contigo antes.\n\nLo curioso es que yo llegué a esa primera cita lleno de dudas. Al principio, ni siquiera tenía intenciones de que pasara algo entre nosotros. Creía que aquellos sentimientos que había tenido en el colegio ya habían desaparecido. Pero bastó una semana hablando contigo para darme cuenta de que quizás nunca se habían ido del todo.\n\nY entonces llegó aquella salida.\n\nFuimos a comer a un restaurante italiano. Tú pediste una carbonara y yo una Alfredo. Hablamos durante horas, tomamos un poco y, cuando llegó el momento de llevarte a tu casa, me despedí de ti con una sensación que no me abandonó en todo el camino de vuelta: me había quedado con las ganas de besarte.\n\nNuestra segunda salida fue diferente. Recuerdo que te habías pintado las uñas el día anterior y que, en algún momento, terminé tomándote de la mano. Cuando llegamos a tu casa, volví a despedirme de ti como si aquella fuera una salida cualquiera. Pero, antes de que te bajaras del carro, algo en mí pudo más que todas las dudas que llevaba encima. Te tomé suavemente de la mandíbula y te besé.\n\nY creo que, por primera vez, dejé de preguntarme qué habría pasado si lo hubiera intentado antes.\n\nPara nuestra tercera salida fuimos a un parque. No hubo restaurante, ni una cena especial, ni siquiera un plan que necesitara dinero. Éramos tú, yo y una conversación que se extendió durante horas. Y fue ahí donde empecé a entender que no necesitaba grandes planes para disfrutar de tu compañía. Bastaba con tenerte enfrente y poder seguir hablando contigo.\n\nPero las dudas no desaparecieron con aquel beso ni con aquella conversación.\n\nPorque, para entonces, ya había empezado a darme cuenta de lo que sentía por ti, y eso me asustaba. Me di cuenta de que te amaba sin haber amado antes, de que estaba entrando en una etapa de mi vida que no conocía y para la que no sabía si estaba preparado.\n\nTenía miedo de no ser suficiente, de ser rechazado, de lo que pudieran pensar los demás. Miedo de elegir mal, de empezar algo para lo que todavía no me sentía listo, de ir demasiado rápido y, al mismo tiempo, de sentir demasiado. Tenía tantas dudas que, a veces, no sabía qué hacer con todo lo que estaba sintiendo.\n\nPero había algo que empezaba a tener claro: no quería que el miedo volviera a decidir por mí.\n\nDurante aquel año en que nuestros caminos estuvieron separados, aprendí que la vida a veces nos da segundas oportunidades. Y yo no quería desperdiciar la mía.\n\nNo sabía cómo se suponía que debía amar, ni tenía experiencia para asegurar que todo saldría bien. No tenía respuestas para todas mis dudas ni garantías de que estaba tomando la decisión correcta.\n\nPero tenía ganas de intentarlo contigo.\n\nY, para alguien que durante tanto tiempo prefirió guardar lo que sentía antes que arriesgarse a perderlo, eso ya significaba mucho.',
   popTitulo: 'Enamoramiento', popTexto: 'EDITAR: texto personal de Enamoramiento',
   nostalgiaTitulo: 'Nostalgia', nostalgiaTexto: 'EDITAR: texto personal de Nostalgia',
   cumpleTitulo: 'Feliz cumpleaños', cumpleTexto: 'EDITAR: mensaje personal de cumpleaños (deseos de felicidad, tranquilidad y oportunidades)',
@@ -37,8 +37,11 @@ const $ = (s, r = document) => r.querySelector(s);
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* Contenido */
-document.querySelectorAll('[data-t]').forEach(el => el.textContent = CONTENT[el.dataset.t] ?? '');
-$('.acrostico').innerHTML = ACROSTICO.map(([l, p]) => `<li><b aria-hidden="true">${l}</b><span>${p}</span></li>`).join('');
+document.querySelectorAll('[data-t]').forEach(el => {
+  const partes = (CONTENT[el.dataset.t] ?? '').split('\n\n');   // un párrafo real por cada \n\n
+  el.textContent = partes[0];
+  if (el.closest('.texto')) el.after(...partes.slice(1).map(x => Object.assign(document.createElement('p'), { textContent: x })));
+});$('.acrostico').innerHTML = ACROSTICO.map(([l, p]) => `<li><b aria-hidden="true">${l}</b><span>${p}</span></li>`).join('');
 
 /* Reproductor: sugiere y reproduce SOLO tras un toque de la persona (Escuchar, Lista o Continuar) */
 const Player = (() => {
@@ -69,11 +72,28 @@ const Player = (() => {
     document.head.append(s); setTimeout(no, 5000);
   });
   const plano = c => {
+    console.log('[musica] usando reproductor simple (sin control por código)');
     plain = true; embed.innerHTML = '';
     const f = document.createElement('iframe'); f.title = 'Reproductor de Spotify'; f.allow = 'autoplay; encrypted-media';
     f.src = `https://open.spotify.com/embed/track/${c.id}`; embed.append(f);
   };
   const tocar = () => { if (quiere && ctrl) { quiere = false; ctrl.play(); } };
+  // Repite la canción (o el fragmento de 30 s) cuando termina sola. Una pausa manual no la reinicia.
+  const activaBucle = C => {
+    let sonaba = false, ult = 0, ultEvento = 0;
+    const repite = () => { sonaba = false; console.log('[musica] repitiendo'); C.seek(0); C.play(); };
+    C.addListener('playback_update', e => {
+      const d = e.data || {};
+      console.log('[musica]', 'pausa:', d.isPaused, 'pos:', d.position, 'dur:', d.duration);   // diagnóstico
+      ultEvento = Date.now();
+      if (!d.isPaused) { sonaba = true; ult = d.position; return; }
+      const termino = sonaba && (d.position <= 1000 || (d.duration && ult >= d.duration - 1500));
+      sonaba = false;
+      if (termino) repite();
+    });
+    // Si la reproducción se corta sin avisar (dejan de llegar eventos mientras sonaba), también repite
+    setInterval(() => { if (sonaba && Date.now() - ultEvento > 3000) repite(); }, 1000);
+  };
   const suena = () => {
     const c = cur(), uri = `spotify:track:${c.id}`; quiere = true;
     if (plain) return plano(c);
@@ -81,7 +101,10 @@ const Player = (() => {
     cargaApi().then(API => {
       if (plain || ctrl) return;
       const host = document.createElement('div'); embed.innerHTML = ''; embed.append(host);
-      API.createController(host, { uri, width: '100%', height: 80 }, C => { ctrl = C; C.addListener('ready', tocar); });
+      API.createController(host, { uri, width: '100%', height: 80 }, C => {
+        ctrl = C; C.addListener('ready', tocar);
+        activaBucle(C);
+      });
       setTimeout(() => { if (!ctrl) plano(cur()); }, 5000);
     }).catch(() => plano(cur()));
   };

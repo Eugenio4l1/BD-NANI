@@ -16,3 +16,18 @@
   0%{box-shadow:calc(var(--p)*13) calc(var(--p)*3) #e0a070,calc(var(--p)*14) calc(var(--p)*3) #e0a070,calc(var(--p)*15) calc(var(--p)*3) #e0a070,calc(var(--p)*13) calc(var(--p)*4) #e0a070,calc(var(--p)*14) calc(var(--p)*4) #e0a070,calc(var(--p)*15) calc(var(--p)*4) #e0a070,calc(var(--p)*13) calc(var(--p)*5) #e0a070,calc(var(--p)*14) calc(var(--p)*5) #e0a070,calc(var(--p)*15) calc(var(--p)*5) #e0a070,calc(var(--p)*13) calc(var(--p)*6) #e0a070,calc(var(--p)*14) calc(var(--p)*6) #e0a070,calc(var(--p)*13) calc(var(--p)*7) #e0a070,calc(var(--p)*14) calc(var(--p)*7) #e0a070,calc(var(--p)*13) calc(var(--p)*8) #e0a070,calc(var(--p)*14) calc(var(--p)*8) #e0a070,calc(var(--p)*13) calc(var(--p)*9) #e0a070,calc(var(--p)*14) calc(var(--p)*9) #e0a070,calc(var(--p)*13) calc(var(--p)*10) #e0a070,calc(var(--p)*14) calc(var(--p)*10) #e0a070,calc(var(--p)*12) calc(var(--p)*11) #2b2b3a,calc(var(--p)*13) calc(var(--p)*11) #2b2b3a,calc(var(--p)*14) calc(var(--p)*11) #2b2b3a,calc(var(--p)*12) calc(var(--p)*12) #2b2b3a,calc(var(--p)*13) calc(var(--p)*12) #2b2b3a,calc(var(--p)*14) calc(var(--p)*12) #2b2b3a}
   50%{box-shadow:calc(var(--p)*13) calc(var(--p)*2) #e0a070,calc(var(--p)*14) calc(var(--p)*2) #e0a070,calc(var(--p)*15) calc(var(--p)*2) #e0a070,calc(var(--p)*13) calc(var(--p)*3) #e0a070,calc(var(--p)*14) calc(var(--p)*3) #e0a070,calc(var(--p)*15) calc(var(--p)*3) #e0a070,calc(var(--p)*13) calc(var(--p)*4) #e0a070,calc(var(--p)*14) calc(var(--p)*4) #e0a070,calc(var(--p)*15) calc(var(--p)*4) #e0a070,calc(var(--p)*14) calc(var(--p)*5) #e0a070,calc(var(--p)*15) calc(var(--p)*5) #e0a070,calc(var(--p)*14) calc(var(--p)*6) #e0a070,calc(var(--p)*15) calc(var(--p)*6) #e0a070,calc(var(--p)*14) calc(var(--p)*7) #e0a070,calc(var(--p)*15) calc(var(--p)*7) #e0a070,calc(var(--p)*14) calc(var(--p)*8) #e0a070,calc(var(--p)*15) calc(var(--p)*8) #e0a070,calc(var(--p)*14) calc(var(--p)*9) #e0a070,calc(var(--p)*15) calc(var(--p)*9) #e0a070,calc(var(--p)*14) calc(var(--p)*10) #e0a070,calc(var(--p)*15) calc(var(--p)*10) #e0a070,calc(var(--p)*12) calc(var(--p)*11) #2b2b3a,calc(var(--p)*13) calc(var(--p)*11) #2b2b3a,calc(var(--p)*14) calc(var(--p)*11) #2b2b3a,calc(var(--p)*12) calc(var(--p)*12) #2b2b3a,calc(var(--p)*13) calc(var(--p)*12) #2b2b3a,calc(var(--p)*14) calc(var(--p)*12) #2b2b3a}}
 @media (prefers-reduced-motion:reduce){.peek,.sprite::after{animation:none}.peek{transform:translateX(-18%)}}
+
+/* Duda: ciudad nocturna en pixel art (más luces cerca de ella, a la izquierda) */
+.s-duda{--s:12rem;--c:clamp(14rem,30vw,28rem);image-rendering:pixelated;
+  background:url("img/estrellas-pixel.png") 0 0/512px 512px,url("img/estrellas-pixel-2.png") 0 0/640px 640px,#0a1038}
+/* la ciudad va en una capa propia, sobre el suelo */
+.s-duda::before{content:"";position:absolute;left:0;right:0;bottom:var(--s);height:var(--c);background:url("img/ciudad-pixel.png") left bottom/100% auto no-repeat;
+  -webkit-mask-image:linear-gradient(transparent,#000 35%);mask-image:linear-gradient(transparent,#000 35%)}
+/* la luna, arriba a la izquierda; el texto siempre empieza debajo de ella */
+.s-duda::after{content:"";position:absolute;right:auto;top:1.2rem;left:6%;width:8rem;height:8rem;background:url("img/luna-pixel.png") center/contain no-repeat;box-shadow:none;animation:none}
+.paginas main>section.s-duda{padding-top:10.5rem;padding-bottom:calc(var(--s) + var(--c) * .65)}
+.pixel-grid{display:none}
+.s-duda .texto{background:#050a2ed9;padding:1.5rem 1.7rem;border:3px solid #26357f}
+.suelo{background:repeating-linear-gradient(90deg,#070b27 0 24px,#0b1138 24px 48px);border-top:8px solid #1f2d7a}
+@media (max-aspect-ratio:1/1){.s-duda{--c:18rem}.s-duda::before{background-size:auto 100%}}
+@media (min-width:1300px){.s-duda .texto{justify-self:end;margin-right:6%}}
