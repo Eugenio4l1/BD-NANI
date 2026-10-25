@@ -174,3 +174,32 @@ section:focus{outline:none}
 .s-pop .texto{max-width:44rem}
 .texto p{font-size:clamp(1rem,.35vw + .92rem,1.1rem);line-height:1.75;margin:0 0 1.15rem;color:#ece8df;max-width:none}
 .texto p:last-child{margin-bottom:0}
+
+/* Enamoramiento con texto largo: el retrato acompaña al texto mientras se lee */
+@media (min-width:800px){
+  .s-pop{overflow:clip}
+  .s-pop .retrato{position:sticky;top:5rem;align-self:start}
+  .s-pop .texto{align-self:start}
+}
+
+/* Amistad y Nostalgia con texto largo: la imagen acompaña al texto mientras se lee */
+@media (min-width:800px){
+  .s-amistad,.s-nostalgia{overflow:clip}
+  .s-amistad .retrato,.s-nostalgia figure{position:sticky;top:5rem;align-self:start}
+  .s-amistad .texto,.s-nostalgia .texto{align-self:start}
+  .s-nostalgia figure img{max-height:calc(100svh - 8rem);object-fit:contain}
+}
+
+/* Cumpleaños: título más chico y en equilibrio con el texto largo */
+.s-cumple .mural{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:1.5rem}
+
+/* Cumpleaños: escena de Playa Flamingo en pixel art (título en el cielo, mensaje en la arena) */
+.s-cumple{background:linear-gradient(#302b43,#1a1630 60%,#04050f)}
+.paginas main>section.s-cumple.activa{display:block;padding:0}
+.playa{width:100%;position:relative;height:100svh;min-height:36rem;background:linear-gradient(#7a2c86 calc(100% - 6rem),#4a2a6a 100%)}
+.playa img{position:absolute;left:0;top:0;width:100%;height:calc(100% - 6rem);object-fit:cover;object-position:50% 100%;image-rendering:pixelated;-webkit-mask-image:linear-gradient(#000 88%,transparent);mask-image:linear-gradient(#000 88%,transparent)}
+.px-titulo{position:absolute;top:clamp(1rem,7svh,4.5rem);left:0;right:0;margin:0;padding:0 1rem;text-align:center;text-transform:uppercase;font-family:var(--f-pix);font-weight:400;font-size:clamp(1rem,4vw,3rem);line-height:1.6;color:#ffe08a;
+  text-shadow:.08em .08em 0 #302b43,-.08em .08em 0 #302b43,.08em -.08em 0 #302b43,-.08em -.08em 0 #302b43,0 .18em 0 #a24a6b}
+.px-arena{position:absolute;left:50%;bottom:1.2rem;transform:translateX(-50%);width:min(34rem,calc(100% - 2rem));margin:0;text-align:center;font-family:var(--f-pix);font-size:clamp(.55rem,1.4vw,.85rem);line-height:2;color:#f6dfaa;text-shadow:.12em .12em 0 #302b43}
+.s-cumple .texto{margin:0 auto;padding:3rem 1.5rem 0;max-width:44rem}
+.s-cumple .pasos{padding:2rem 0 9rem}

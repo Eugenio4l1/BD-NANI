@@ -30,4 +30,9 @@
 .s-duda .texto{background:#050a2ed9;padding:1.5rem 1.7rem;border:3px solid #26357f}
 .suelo{background:repeating-linear-gradient(90deg,#070b27 0 24px,#0b1138 24px 48px);border-top:8px solid #1f2d7a}
 @media (max-aspect-ratio:1/1){.s-duda{--c:18rem}.s-duda::before{background-size:auto 100%}}
-@media (min-width:1300px){.s-duda .texto{justify-self:end;margin-right:6%}}
+/* Pantallas anchas: el texto va a la derecha y la luna se queda fija a la izquierda mientras se lee */
+@media (min-width:1000px){
+  .s-duda::after{position:fixed}
+  .paginas main>section.s-duda{padding-top:5rem}
+  .s-duda .texto{justify-self:end;max-width:min(44rem,calc(100vw - 14rem))}
+}
