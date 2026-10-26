@@ -11,7 +11,7 @@ const CONTENT = {
   cumpleTitulo: 'Feliz cumpleaños Nani', cumpleTexto: '',
   cumpleArena: 'Ojalá la vida te devuelva, de tantas maneras bonitas, todo lo bueno que tienes para dar',
   osoPista: 'Toca el oso',
-  ultimaFrase: 'EDITAR: última frase breve y serena',
+  ultimaFrase: 'Una MUJER con todas las letras.',
   playlistTexto: 'Si quieres, aquí está toda la música de esta historia, para escucharla con calma.'
 };
 const ACROSTICO = [['M','Maravillosa'],['U','Única'],['J','Juiciosa'],['E','Encantadora'],['R','Reina']];
@@ -19,10 +19,13 @@ const ACROSTICO = [['M','Maravillosa'],['U','Única'],['J','Juiciosa'],['E','Enc
 // para enlazar la canción exacta y permitir el reproductor integrado. Sin id se usa una búsqueda en Spotify.
 const ETAPAS = {
   amistad: { nombre: 'Amistad', canciones: [
-    { t: 'Umbrella', a: 'Rihanna', id: '49FYlytm3dAAraYgpoJZux' }, { t: 'Rude', a: 'MAGIC!', id: '022uhFttW9NauVhtsXYCI6' }] },
+    { t: 'Umbrella', a: 'Rihanna', id: '49FYlytm3dAAraYgpoJZux' }, { t: 'Rude', a: 'MAGIC!', id: '022uhFttW9NauVhtsXYCI6' },
+    { t: 'Parcera', a: 'Penyair, Alka Produce', id: '724Txk8NEBXqNK7nIvY6MK' },
+    { t: 'Diamonds', a: 'Sofia Black', id: '6jZbtY2FtNDTCxUJRP04WN' }] },
   duda: { nombre: 'Duda', canciones: [
     { t: 'Cosita Linda', a: 'Elena Rose', id: '6tNGSjIgbSp3B2LOWumkJ0' }, { t: 'Sonrisa de Payaso', a: 'Gona', id: '3bLuJFLax7afN8NKoiohbr' },
-    { t: 'El y ella', a: 'Gona', id: '0nE9mOurWKidlO4ZH3vfSU' }] },
+    { t: 'El y ella', a: 'Gona', id: '0nE9mOurWKidlO4ZH3vfSU' },
+    { t: 'orióN', a: 'Boza, ELENA ROSE', id: '4feh4Ak3ZJfC6ibxkNzlkE' }] },
   enamoramiento: { nombre: 'Enamoramiento', canciones: [
     { t: 'Canela', a: 'Nanpa Básico', id: '592R1yDJZI1NUKHpjyLCua' }, { t: 'Lova', a: 'Movimiento Original', id: '4aYhFY9ITenqSodAXyOeGg' },
     { t: 'Querer querernos', a: 'Canserbero', id: '6d3q0F9VNtdxQUTVlRcet6' }, { t: 'Le pido a Dios', a: 'Feid', id: '4TFNKnMWjcMWzpkSwQrrcu' },
@@ -30,8 +33,22 @@ const ETAPAS = {
   nostalgia: { nombre: 'Nostalgia', canciones: [
     { t: 'Paisajes', a: 'Gera MX', id: '7jootLrnGZWnVzHv6qjHqy' }, { t: 'Como dormiste', a: 'Rels B', id: '3fjN3y5x4hN53rykAN2LHQ' },
     { t: 'Stupid Love Story', a: 'Canserbero', id: '2dAyefEhtK9v7dz3Z74thD' }, { t: 'El reloj del corazón', a: 'Gera MX', id: '5q20ChVvFID1D8wL6TSxjm' },
-    { t: 'Luna', a: 'Feid', id: '7bywjHOc0wSjGGbj04XbVi' }] }
+    { t: 'Luna', a: 'Feid', id: '7bywjHOc0wSjGGbj04XbVi' },
+    { t: 'Maquiavélico', a: 'Canserbero', id: '2RYOtMt9aj0p2mP5ofomFd' }, { t: 'Debí tirar más fotos', a: 'Bad Bunny', id: '3sK8wGT43QFpWrvNQsrQya' },
+    { t: 'Roulin', a: 'ELENA ROSE, Eladio Carrion', id: '4CW60MJtsp5GckOQLcC2NK' }] }
 };
+
+// Carrusel de ilustraciones: una entrada por imagen (puedes agregar o quitar las que quieras).
+// Con src vacío, o si el archivo no existe, se ve un recuadro "EDITAR".
+const CINTA = [
+  { src: 'img/ilustracion-1.png', alt: 'Pareja sentada en la parte de atrás de un pickup blanco, viendo las estrellas en un descampado' },
+  { src: 'img/ilustracion-2.png', alt: 'Pareja bailando en una pista al aire libre durante una fiesta de barrio' },
+  { src: 'img/ilustracion-3.png', alt: 'Pareja tomando algo y conversando en una cafetería' },
+  { src: 'img/ilustracion-4.png', alt: 'Vista frontal del pickup: él maneja con una mano y ella le acaricia la nuca' },
+  { src: 'img/ilustracion-5.png', alt: 'Pareja viendo una película al atardecer desde el asiento trasero del carro' },
+  { src: 'img/ilustracion-6.png', alt: 'Silueta de la pareja abrazada y besándose en la habitación de él' },
+  { src: 'img/ilustracion-7.png', alt: 'Pareja decorando juntos un árbol de Navidad' }
+];
 /* ======================================================================= */
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -47,7 +64,7 @@ document.querySelectorAll('[data-t]').forEach(el => {
 /* Reproductor: sugiere y reproduce SOLO tras un toque de la persona (Escuchar, Lista o Continuar) */
 const Player = (() => {
   const root = $('#musica'), panel = $('#mPanel'), lista = $('#mLista'), embed = $('#mEmbed'), tog = $('#mToggle');
-  let etapa = null, sel = 0, ctrl = null, apiP = null, plain = false, quiere = false;
+  let etapa = null, sel = 0, ctrl = null, apiP = null, plain = false, quiere = false, ultCarga = 0;
   const cur = () => ETAPAS[etapa].canciones[sel];
   const link = c => `https://open.spotify.com/track/${c.id}`;
   const pinta = () => {
@@ -79,23 +96,29 @@ const Player = (() => {
     f.src = `https://open.spotify.com/embed/track/${c.id}`; embed.append(f);
   };
   const tocar = () => { if (quiere && ctrl) { quiere = false; ctrl.play(); } };
-  // Repite la canción (o el fragmento de 30 s) cuando termina sola. Una pausa manual no la reinicia.
+  // Al terminar una canción pasa a la siguiente de la etapa (al llegar a la última vuelve a la primera); no repite la misma
+  const siguiente = () => { sel = (sel + 1) % ETAPAS[etapa].canciones.length; pinta(); suena(); };
   const activaBucle = C => {
     let sonaba = false, ult = 0, ultEvento = 0;
-    const repite = () => { sonaba = false; console.log('[musica] repitiendo'); C.seek(0); C.play(); };
     C.addListener('playback_update', e => {
       const d = e.data || {};
       console.log('[musica]', 'pausa:', d.isPaused, 'pos:', d.position, 'dur:', d.duration);   // diagnóstico
       ultEvento = Date.now();
-      if (!d.isPaused) { sonaba = true; ult = d.position; return; }
+      if (Date.now() - ultCarga < 2500) { sonaba = false; ult = 0; return; }   // ignora los eventos de una canción recién cargada
+      if (!d.isPaused) {
+        // el reproductor reinició la misma canción por su cuenta, o llegó al final: pasar a la siguiente
+        if (sonaba && ((d.position < 2000 && ult > 10000) || (d.duration && d.position >= d.duration - 1200))) { sonaba = false; siguiente(); return; }
+        sonaba = true; ult = d.position; return;
+      }
       const termino = sonaba && (d.position <= 1000 || (d.duration && ult >= d.duration - 1500));
       sonaba = false;
-      if (termino) repite();
+      if (termino) siguiente();
     });
-    // Si la reproducción se corta sin avisar (dejan de llegar eventos mientras sonaba), también repite
-    setInterval(() => { if (sonaba && Date.now() - ultEvento > 3000) repite(); }, 1000);
+    // Si la reproducción se corta sin avisar (dejan de llegar eventos mientras sonaba), también pasa a la siguiente
+    setInterval(() => { if (sonaba && Date.now() - ultEvento > 3000) { sonaba = false; siguiente(); } }, 1000);
   };
   const suena = () => {
+    ultCarga = Date.now();
     const c = cur(), uri = `spotify:track:${c.id}`; quiere = true;
     if (plain) return plano(c);
     if (ctrl) { const p = ctrl.loadUri(uri); p && p.then && p.then(tocar); return; }
@@ -167,3 +190,87 @@ oso.addEventListener('click', () => {
 
 /* Al llegar al final, el fondo cambia al cielo estrellado */
 new IntersectionObserver(es => es.forEach(e => document.body.classList.toggle('noche', e.isIntersecting)), { threshold: 0.2 }).observe($('#cielo'));
+
+/* Carrusel: la ilustración actual va al centro, grande; la anterior y la siguiente, más pequeñas a los lados */
+(() => {
+  const host = $('#carrusel'), lista = $('#cinta');
+  if (!host || !lista || !CINTA.length) return;
+  const prev = $('#carPrev'), next = $('#carNext'), cont = $('#carCont');
+  const N = CINTA.length, GAP = 18, LADO = 0.68;   // GAP: separación en px · LADO: tamaño de las vecinas (0.68 = 68 %)
+  const pad = n => String(n + 1).padStart(2, '0');
+  let idx = 0;
+
+  const vacia = (li, i) => {
+    li.querySelector('img')?.remove();
+    if (!li.querySelector('.vacia')) li.insertAdjacentHTML('afterbegin', `<span class="vacia">EDITAR<br>ilustración ${i + 1}</span>`);
+  };
+
+  lista.innerHTML = CINTA.map((f, i) => `<li class="slide" role="group" aria-roledescription="diapositiva" aria-label="${i + 1} de ${N}">${f.src
+    ? `<img src="${f.src}" alt="${f.alt}" draggable="false" decoding="async">`
+    : `<span class="vacia">EDITAR<br>ilustración ${i + 1}</span>`}<small>${pad(i)}</small></li>`).join('');
+  const slides = [...lista.children];
+
+  // cada imagen conserva su proporción real (las hay verticales y casi cuadradas)
+  slides.forEach((li, i) => {
+    const img = li.querySelector('img');
+    if (!img) return;
+    const ajusta = () => { li.style.setProperty('--r', img.naturalWidth / img.naturalHeight); poner(); };
+    img.addEventListener('load', ajusta);
+    img.addEventListener('error', () => { vacia(li, i); poner(); });
+    if (img.complete) img.naturalWidth ? ajusta() : vacia(li, i);
+  });
+
+  const dAnt = slides.map(() => null);               // posición anterior de cada ilustración (para detectar el salto de un extremo al otro)
+  function poner() {
+    if (!host.clientWidth) return;                   // la pantalla aún está oculta: se vuelve a calcular al mostrarse
+    const ancho = slides.map(li => li.offsetWidth);
+    slides.forEach((li, i) => {
+      // distancia circular al centro: después de la última viene la primera, y antes de la primera, la última
+      let d = ((i - idx) % N + N) % N; if (d > N / 2) d -= N;
+      const a = Math.abs(d), dir = Math.sign(d), esc = a === 0 ? 1 : LADO;
+      const x = a === 0 ? 0 : dir * (ancho[idx] / 2 + GAP + ancho[i] * LADO / 2 + (a - 1) * (ancho[i] * LADO + GAP));
+      const salto = dAnt[i] !== null && Math.abs(d - dAnt[i]) > 1;   // cruza de un lado al otro: se coloca sin animar
+      if (salto) li.style.transition = 'none';
+      li.style.transform = `translateX(calc(-50% + ${x}px)) scale(${esc})`;
+      if (salto) { void li.offsetWidth; li.style.transition = ''; }
+      dAnt[i] = d;
+      li.style.zIndex = String(10 - a);
+      li.classList.toggle('actual', a === 0);
+      li.classList.toggle('vecina', a === 1);
+      li.classList.toggle('lejos', a > 1);
+      li.toggleAttribute('inert', a > 1);
+      if (a === 0) li.removeAttribute('aria-hidden'); else li.setAttribute('aria-hidden', a > 1 ? 'true' : 'false');
+    });
+    cont.textContent = `${pad(idx)} / ${pad(N - 1)}`;
+    prev.disabled = next.disabled = N < 2;          // es circular: nunca se bloquea (salvo que haya una sola imagen)
+  }
+
+  const ir = i => { if (N < 2) return; idx = ((i % N) + N) % N; poner(); };
+  prev.onclick = () => ir(idx - 1);
+  next.onclick = () => ir(idx + 1);
+  slides.forEach((li, i) => li.addEventListener('click', () => {
+    const d = ((i - idx) % N + N) % N;
+    if (d === 1 || d === N - 1) ir(i);             // solo las vecinas (la siguiente y la anterior, incluso al dar la vuelta)
+  }));
+
+  // teclado (flechas) cuando el carrusel tiene el foco
+  host.addEventListener('keydown', e => {
+    const k = { ArrowLeft: idx - 1, ArrowRight: idx + 1 }[e.key];
+    if (k === undefined) return;
+    e.preventDefault(); ir(k);
+  });
+
+  // deslizar con el dedo o el ratón
+  let x0 = null;
+  host.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  host.addEventListener('pointerup', e => {
+    if (x0 !== null && Math.abs(e.clientX - x0) > 45) ir(idx + (e.clientX < x0 ? 1 : -1));
+    x0 = null;
+  });
+  host.addEventListener('pointercancel', () => { x0 = null; });
+
+  // recalcula al cambiar el tamaño de la ventana o cuando la pantalla pasa de oculta a visible
+  new ResizeObserver(poner).observe(host);
+  poner();
+  requestAnimationFrame(() => requestAnimationFrame(() => lista.classList.add('listo')));   // activa las transiciones después del primer cálculo
+})();

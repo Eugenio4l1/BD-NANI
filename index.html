@@ -60,6 +60,16 @@
     <p class="px-arena" data-t="cumpleArena"></p>
   </div>
   <div class="texto"><p data-t="cumpleTexto"></p></div>
+  <div class="cinta" role="region" aria-roledescription="carrusel" aria-label="Ilustraciones">
+    <div id="carrusel" class="carrusel" tabindex="0" aria-label="Usa las flechas del teclado para cambiar de ilustración">
+      <ul id="cinta" class="rollo"></ul>
+    </div>
+    <div class="car-ctrl">
+      <button type="button" id="carPrev" class="car-btn" aria-label="Ilustración anterior">&#8249;</button>
+      <span id="carCont" class="car-cont" aria-live="polite"></span>
+      <button type="button" id="carNext" class="car-btn" aria-label="Ilustración siguiente">&#8250;</button>
+    </div>
+  </div>
 </section>
 
 <section id="cielo" data-scene="cielo" class="s-cielo">
